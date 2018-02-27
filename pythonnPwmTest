@@ -1,0 +1,22 @@
+import RPi.GPIO as GPIO
+import time
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BOARD)
+
+svetlo_pin1 = 12
+GPIO.setup(svetlo_pin1, GPIO.OUT)
+
+led_pwm1 = GPIO.PWM(svetlo_pin1, 1000)
+led_pwm1.start(0)
+
+print "Starting getting more PWM"
+
+for x in range (1, 100):
+	led_pwm1.ChangeDutyCycle(x)
+	print "Actual duty is: " % x
+	time.sleep(1)
+
+
+GPIO.setup(svetlo_pin1, GPIO.IN)
+
+
